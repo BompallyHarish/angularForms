@@ -11,39 +11,58 @@
 
 </style>
 
-<main  class="main">
+<main class="main">
   <div class="content">
     <h1>Default Template driven From</h1>
-    <form>
+    {{userForm.value|json}}
+    <br>
+    <br>
+    {{userModel|json}}
+    <form #userForm="ngForm">
       <div>
         <label>Name</label><br>
-        <input type="String" placeholder="Name"><br><br>
+        <input type="String" placeholder="Name" name="name" [(ngModel)]="userModel.name"><br><br>
       </div>
 
       <div>
         <label>Email</label><br>
-        <input type="email" placeholder="Email"><br><br>
+        <input type="email" placeholder="Email" name="email" [(ngModel)]="userModel.email"><br><br>
       </div>
 
       <div>
         <label>Phone Number</label><br>
-        <input type="tel" placeholder="phone number"><br><br>
+        <input type="tel" placeholder="phone number" name="phone" [(ngModel)]="userModel.phone"><br><br>
       </div>
-
+      <div ngModelGroup="address">
+        <div>
+          <label>street</label><br>
+          <input type="text" name="street" [(ngModel)]="userModel.street"><br><br>
+          <label>City</label><br>
+          <input type="text" name="city" [(ngModel)]="userModel.city"><br><br>
+        </div>
+      </div>
       <div>
         <label>Select Course</label><br>
-        <select>
+        <select name="course" [(ngModel)]="userModel.course">
           <option> I am interested In</option>
           <option *ngFor="let topic of topics">{{topic}}</option>
-          
+
         </select>
       </div>
       <br>
+      <div >
+        <label name="shift">shift</label><br>
+        <input type="radio" name="preference" value="evening" [(ngModel)]="userModel.shift"> 
+        <label for="">Evening (5PM-12AM)</label>
+        <input type="radio" name="preference" value="morning" [(ngModel)]="userModel.shift">
+        <label for="">Morning (9AM-12PM)</label>
+      </div>
+      <br>
       <div>
-        <input type="checkbox" name="promoOffers" >
+        <input type="checkbox" name="promoOffers" [(ngModel)]="userModel.promoOffers">
         <label>Send me promotional offers</label>
       </div>
-      <br>  
+      <br>
       <button>Submit</button>
     </form>
 
