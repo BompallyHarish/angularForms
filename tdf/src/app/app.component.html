@@ -18,15 +18,20 @@
     <br>
     <br>
     {{userModel|json}}
+    <br><br>
     <form #userForm="ngForm">
       <div>
         <label>Name</label><br>
-        <input type="String" placeholder="Name" name="name" [(ngModel)]="userModel.name"><br><br>
+        <input type="String" placeholder="Name" #test="ngModel" required name="name" [(ngModel)]="userModel.name"><br>
       </div>
-
+      <br>
+      {{test.valid}} <br><br>
       <div>
         <label>Email</label><br>
-        <input type="email" placeholder="Email" name="email" [(ngModel)]="userModel.email"><br><br>
+        <input type="email" #email placeholder="Email" name="email" [(ngModel)]="userModel.email"><br><br>
+      </div>
+      <div>
+        {{email.className}} <br><br>
       </div>
 
       <div>
@@ -50,9 +55,9 @@
         </select>
       </div>
       <br>
-      <div >
+      <div>
         <label name="shift">shift</label><br>
-        <input type="radio" name="preference" value="evening" [(ngModel)]="userModel.shift"> 
+        <input type="radio" name="preference" value="evening" [(ngModel)]="userModel.shift">
         <label for="">Evening (5PM-12AM)</label>
         <input type="radio" name="preference" value="morning" [(ngModel)]="userModel.shift">
         <label for="">Morning (9AM-12PM)</label>
