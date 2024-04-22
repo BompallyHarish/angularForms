@@ -22,7 +22,10 @@
     <form #userForm="ngForm">
       <div>
         <label>Name</label><br>
-        <input type="String" placeholder="Name" #test="ngModel" required name="name" [(ngModel)]="userModel.name"><br>
+        <input type="String" placeholder="Name" required #test="ngModel" class="form-control"
+          [class.is-invalid]="test.invalid && test.touched" name="name" [(ngModel)]="userModel.name">
+        <small class="text-danger" [class.d-none]="test.valid">Name is required.</small>
+        <br>
       </div>
       <br>
       {{test.valid}} <br><br>
@@ -36,7 +39,15 @@
 
       <div>
         <label>Phone Number</label><br>
-        <input type="tel" placeholder="phone number" name="phone" [(ngModel)]="userModel.phone"><br><br>
+        <input type="tel" placeholder="phone number" name="phone" required pattern="^\d{10}$" #phone="ngModel"
+          class="form-control" [class.is-invalid]="phone.invalid && phone.touched" [(ngModel)]="userModel.phone">
+        <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">phone Number is required and must be
+          10 digits.</small>
+        <!-- <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
+          <small class="text-danger" *ngIf="phone.errors">phone number is required.</small>
+          <small class="text-danger" *ngIf="phone.errors.pattern">phone number must be 10 digits.</small>
+        </div> -->
+        <br><br>
       </div>
       <div ngModelGroup="address">
         <div>
