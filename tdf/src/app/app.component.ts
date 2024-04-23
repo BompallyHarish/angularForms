@@ -14,5 +14,5 @@ import { User } from './user';
 export class AppComponent {
   title = 'tdf';
   public topics = ["Angular", "NodeJS", "MongoDB", "Express"]
-public userModel = new User("Harish","test@gmail.com","9502315173","Main Road", "Gandhari","Angular",true,"morning")
+public userModel = new User("Harish","test@gmail.com","9502315173","Main Road", "Gandhari","",true,"morning")
 }

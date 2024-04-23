@@ -57,13 +57,14 @@
           <input type="text" name="city" [(ngModel)]="userModel.city"><br><br>
         </div>
       </div>
-      <div>
+      <div class="form-group">
         <label>Select Course</label><br>
-        <select name="course" [(ngModel)]="userModel.course">
-          <option> I am interested In</option>
+        <select required name="course" #course="ngModel" [class.is-invalid]="course.invalid && course.touched"
+          [(ngModel)]="userModel.course">
+          <option value=""> I am interested In</option>
           <option *ngFor="let topic of topics">{{topic}}</option>
-
-        </select>
+        </select><br>
+        <small class="text-danger" [class.d-none]="course.valid || course.untouched">select course.</small>
       </div>
       <br>
       <div>
@@ -77,9 +78,9 @@
       <div>
         <input type="checkbox" name="promoOffers" [(ngModel)]="userModel.promoOffers">
         <label>Send me promotional offers</label>
-      </div>
-      <br>
-      <button>Submit</button>
+      </div><br>
+      {{userForm.form.invalid}} <br><br>
+      <button [disabled]="userForm.form.invalid" class="btn btn-primary">Submit</button>
     </form>
 
   </div>
