@@ -1,3 +1,12 @@
-.main{
+.main {
     background: lightblue;
+}
+
+.line {
+    color: black;
+    /* width: 2px; */
+}
+
+.nextLine { 
+    margin-bottom: 10px;
 }
